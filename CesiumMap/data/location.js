@@ -1,4 +1,4 @@
-$(function(){
+$(function () {
 
 
   client.search({
@@ -14,19 +14,8 @@ $(function(){
 
   }, function run(error, response) {
 
-    demoLocations = {
-      "type": "FeatureCollection",
-      "features": [
-      ]
-    };
-
-
-
-
     response.hits.hits.forEach(function (hit) {
-      giveback(hit, demoLocations)
+     newMarkerOnMap(hit)
     })
-
-    CreateMapLayerMarker()
   })
 })
