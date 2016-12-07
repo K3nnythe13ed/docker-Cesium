@@ -1,0 +1,130 @@
+{
+  "template": "logstash-*",
+  "settings": {
+    "index.refresh_interval": "5s"
+  },
+  "mappings": {
+    "vessel": {
+      "_source": {
+        "enabled": true,
+        "excludes": [
+          "offset",
+          "input_type",
+          "source",
+          "type",
+          "tags",
+          "@version",
+          "beat.*",
+          "beat",
+          "host"
+        ]
+      },
+      "properties": {
+        "@timestamp": {
+          "type": "date"
+        },
+        "A": {
+          "type": "long"
+        },
+        "B": {
+          "type": "long"
+        },
+        "C": {
+          "type": "long"
+        },
+        "CALLSIGN": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+        },
+        "COG": {
+          "type": "float"
+        },
+        "D": {
+          "type": "long"
+        },
+        "DEST": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+        },
+        "DRAUGHT": {
+          "type": "float"
+        },
+        "ETA": {
+          "type": "date",
+          "format": "MM-dd HH:mm",
+          "ignore_malformed": true
+        },
+        "HEADING": {
+          "type": "long"
+        },
+        "IMO": {
+          "type": "keyword"
+        },
+        "LOCATION": {
+          "type": "geo_point"
+        },
+        "MMSI": {
+          "type": "keyword"
+        },
+        "NAME": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+        },
+        "NAVSTAT": {
+          "type": "long"
+        },
+        "SOG": {
+          "type": "float"
+        },
+        "TYPE": {
+          "type": "long"
+        },
+        "exposure": {
+          "type": "long"
+        }
+      }
+    },
+    "warehouse": {
+      "_source": {
+        "enabled": true,
+        "excludes": [
+          "offset",
+          "input_type",
+          "source",
+          "type",
+          "tags",
+          "@version",
+          "beat.*",
+          "beat",
+          "host"
+        ]
+      },
+      "properties": {
+        "@timestamp": {
+          "type": "date"
+        },
+        "geometry": {
+          "type": "geo_shape"
+        },
+        "exposure": {
+          "type": "long"
+        }
+      }
+    }
+  }
+}

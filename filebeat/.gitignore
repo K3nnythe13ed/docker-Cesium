@@ -1,0 +1,2 @@
+log/*
+!log/warehouse_*.json

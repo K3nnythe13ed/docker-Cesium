@@ -1,0 +1,75 @@
+version: '2'
+services:
+  elasticsearch:
+    build:
+      context: elasticsearch/
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    volumes:
+      - ./elasticsearch/data:/usr/share/elasticsearch/data
+  #    - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+    environment:
+      ES_JAVA_OPTS: "-Xms1g -Xmx1g"
+      http_proxy: ${http_proxy}
+      no_proxy: ${no_proxy}
+  logstash:
+    build:
+      context: logstash/
+      args:
+        http_proxy: ${http_proxy}
+        no_proxy: ${no_proxy}
+    volumes:
+      - ./logstash/config:/etc/logstash/conf.d
+    ports:
+      - "5044:5044"
+    links:
+      - elasticsearch
+    environment:
+      http_proxy: ${http_proxy}
+      no_proxy: ${no_proxy}
+  filebeat:
+    build:
+      context: filebeat/
+    volumes:
+      - ./filebeat/filebeat.yml:/filebeat.yml
+      - ./filebeat/log:/log
+    links:
+      - logstash
+  provisioner:
+    build:
+      context: provisioner/
+      args:
+        http_proxy: ${http_proxy}
+        no_proxy: ${no_proxy}
+    volumes:
+      - "./provisioner/initial_import:/initial_import"
+    links:
+      - elasticsearch
+  kibana:
+    build:
+      context: kibana/
+    volumes:
+       - "./kibana/config/:/etc/kibana/"
+    ports:
+       - "5601:5601"
+    links:
+       - elasticsearch
+  aishub:
+    build:
+      context: aishub/
+      args:
+        http_proxy: ${http_proxy}
+        no_proxy: ${no_proxy}
+    volumes:
+       - "./aishub/data:/data"
+    volumes_from:
+       - filebeat
+    environment:
+      http_proxy: ${http_proxy}
+      no_proxy: ${no_proxy}
+      ais_user: ${ais_user}
+      ais_window: ${ais_window}
+      #ais_interval: ${ais_interval}
+      ais_json: "/log/aishub"
+ 

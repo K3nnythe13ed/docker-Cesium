@@ -1,0 +1,16 @@
+{
+  "name": "testcesium",
+  "version": "0.0.1",
+  "description": "Testing Cesium",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "K3nnythe13ed",
+  "license": "MIT",
+  "dependencies": {
+    "cesium": "^1.28.0",
+    "elasticsearch": "^12.1.0",
+    "http-server": "^0.9.0"
+  }
+}

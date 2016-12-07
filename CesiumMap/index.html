@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Use correct character set. -->
+    <meta charset="utf-8">
+    <!-- Tell IE to use the latest, best version. -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Make the application on mobile take up the full browser screen and disable user scaling. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    
+    <script src="node_modules/cesium/Build/Cesium/Cesium.js"></script>
+    <script src="bower_components/elasticsearch/elasticsearch.js"></script>
+    <title>Hello World!</title>
+
+
+
+
+    <style>
+        @import url(node_modules/cesium/Build/Cesium/Widgets/widgets.css);
+        html,
+        body,
+        #cesiumContainer {
+            width: 90%;
+            height: 90%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="cesiumContainer"></div>
+
+
+    
+    <script src="index.js"></script>
+    <script src="script/PinBuilder.js"></script>
+
+</body>
+
+</html>

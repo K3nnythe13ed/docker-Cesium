@@ -1,0 +1,17 @@
+{
+  "name": "cesiumMap",
+  "description": "Testing Cesium",
+  "main": "index.js",
+  "authors": [
+    "K3nnythe13ed"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
