@@ -10,21 +10,21 @@ function newMarkerOnMap(hit) {
                 verticalOrigin: Cesium.VerticalOrigin.BOTTOM
             },
             description: '\
-<p>\
-  Location'+hit._source.properties.AccountName +' \
-</p>\
-<p>\
- Location ID: '+hit._source.properties.LocID +'\
- </p>\
- <p>\
- Exposure: '+hit._source.properties.Exp_TIV +'\
-</p>\
-<p>\
- Coordinates: '+hit._source.geometry.coordinates[0] +', '+hit._source.geometry.coordinates[1]+'\
- </p>\
- <p>\
- Risk Score: '+hit._source.properties.MR_RISK_SCORE +'\
- </p>'
+                        <p>\
+                        Location'+ hit._source.properties.AccountName + ' \
+                        </p>\
+                        <p>\
+                        Location ID: '+ hit._source.properties.LocID + '\
+                        </p>\
+                        <p>\
+                        Exposure: '+ hit._source.properties.Exp_TIV + '\
+                        </p>\
+                        <p>\
+                        Coordinates: '+ hit._source.geometry.coordinates[0] + ', ' + hit._source.geometry.coordinates[1] + '\
+                        </p>\
+                        <p>\
+                        Risk Score: '+ hit._source.properties.MR_RISK_SCORE + '\
+                        </p>'
 
         });
     });
