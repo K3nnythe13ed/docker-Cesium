@@ -1,17 +1,20 @@
 {
-  "name": "cesiumMap",
+  "name": "cesiummap",
   "description": "Testing Cesium",
   "main": "index.js",
   "authors": [
     "K3nnythe13ed"
   ],
   "license": "MIT",
-  "homepage": "",
+  "homepage": "https://github.com/K3nnythe13ed/docker-Cesium",
   "ignore": [
     "**/.*",
     "node_modules",
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    "elasticsearch": "^12.1.0"
+  }
 }
