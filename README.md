@@ -1,10 +1,12 @@
-# docker-elk-Riskmap
+# docker-Cesium
 
 This is a synchronized fork of [awesome-inc/docker-elk](https://github.com/awesome-inc/docker-elk).
 
 This is a use case of the ELK stack to assess the insurance risk of cargo vessels and warehouses with respect to spatial, temporal and weather data. 
 
-Technically, this comprises the [Elastic Stack](https://www.elastic.co/products) and a [Leaflet](http://leafletjs.com/) web application to visualize [OpenWeatherMap](https://openweathermap.org/) and playback of online [AIS](https://en.wikipedia.org/wiki/Automatic_identification_system) data.
+Trying to clone the [awesome-inc/docker-elk-riskmap](https://github.com/K3nnythe13ed/docker-elk-Riskmap.git) using the Cesium JavaScript library
+
+Technically, this comprises the [Elastic Stack](https://www.elastic.co/products) and a [Cesium](https://cesiumjs.org/) web application to visualize [OpenWeatherMap](https://openweathermap.org/) and playback of online [AIS](https://en.wikipedia.org/wiki/Automatic_identification_system) data.
 
 ![Screenshot](riskmap.jpg)
 
@@ -24,7 +26,7 @@ Alternatively, use [Vagrant](https://www.vagrantup.com/)
 
     vagrant up
 
-And then access the web application hitting [http://localhost:8080](http://localhost:8080) with a web browser.
+And then access the web application hitting [http://localhost:8080](http://localhost:8080) with a web browser. (TODO)
 
 You will see some test data. Optionally, for online import of AIS data, set your [AISHub username](http://www.aishub.net/xml-description-20.php) before starting the stack, i.e.
 
