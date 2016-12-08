@@ -103,3 +103,88 @@ $('#locationform').formValidation({
 
     }
 });
+$(function () {
+
+    $('#saveloc').click(function () {
+
+        //validate locationform
+        $('#locationform').data('formValidation').validate();
+        //isValid returns true if validate was successful
+        if ($('#locationform').data('formValidation').isValid()) {
+            var locname = document.getElementById("locname").value;
+            var locid = document.getElementById("locid").value;
+            var locexp = document.getElementById("locexp").value;
+            var locrisk = document.getElementById("locrisc").value;
+            var loclat = parseFloat(document.getElementById("loclat").value);
+            var loclon = parseFloat(document.getElementById("loclon").value);
+            var locoe = document.getElementById("locoe").value;
+            //call functon to create a new Location
+            createANewLocation(locname, locid, locexp, locrisk, loclat.toPrecision(12), loclon.toPrecision(12), locoe)
+            $('#myModal').modal('hide');
+
+        }
+    });
+});
+// remove all input values from Modal after Modal has been hidden
+$('#myModal').on('hidden.bs.modal', function () {
+
+    $(this).find('form')[0].reset();
+    $('#locationform').formValidation('resetForm', true);
+});
+
+function createANewLocation(locname, locid, locexp, locrisk, loclat, loclon, locoe) {
+    var today = new Date();
+    client.index({
+        index: 'logstash-constant',
+        type: 'warehouse',
+        id: locid,
+        body: {
+            "@timestamp": today,
+            "exposure": locexp,
+            "geometry": {
+                "coordinates": [
+                    loclon,
+                    loclat
+                ],
+                "type": "Point"
+            },
+            "id": locid,
+            "properties": {
+                "AAL_PreCat_EQ": "",
+                "AAL_PreCat_WS": "",
+                "ML_AGCS_Share": "",
+                "Entire": ", " + locoe + ",  0,  0,  0",
+                "Exp_TIV": locexp,
+                "OE": locoe,
+                "MR_RISK_SCORE": locrisk,
+                "LocID": locid,
+                "AAL_PreCat_FL": "",
+                "AddrMatch": "",
+                "AccountName": locname
+            }
+        }
+
+
+
+    }, function (err, results) {
+        console.log(results)
+        //refresh index. Required based on the asynchronous input of es client
+        client.indices.refresh({
+            index: 'logstash-constant'
+        }, function (err, res) {
+            client.get({
+                index: 'logstash-constant',
+                type: 'warehouse',
+                id: locid
+            }, function (err, response) {
+                console.log(response)
+                newMarkerOnMap(response)
+                addToList(response)
+            })
+
+        })
+
+
+    })
+}
+

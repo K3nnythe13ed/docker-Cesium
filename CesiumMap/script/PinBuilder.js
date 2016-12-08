@@ -12,7 +12,7 @@ function newMarkerOnMap(hit) {
             },
             description: '\
                         <p>\
-                        Location'+ hit._source.properties.AccountName + ' \
+                        Location: '+ hit._source.properties.AccountName + ' \
                         </p>\
                         <p>\
                         Location ID: '+ hit._source.properties.LocID + '\
@@ -26,9 +26,30 @@ function newMarkerOnMap(hit) {
                         <p>\
                         Risk Score: '+ hit._source.properties.MR_RISK_SCORE + '\
                         </p>'
-                        
-
         });
     });
 
+}
+function removePinMarker(id) {
+
+    viewer.entities.remove(viewer.entities.getById(id))
+}
+
+function deleteLocation(id) {
+    console.log(id)
+    client.delete({
+        index: 'logstash-constant',
+        type: 'warehouse',
+        id: id
+    }, function (error, response) {
+        client.indices.refresh({
+            index: 'logstash-constant'
+        }, function (err, results) {
+
+            removePinMarker(id)
+            removeFromList(id)
+        }
+
+        )
+    });
 }
