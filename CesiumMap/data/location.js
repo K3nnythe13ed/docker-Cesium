@@ -1,6 +1,9 @@
 $(function () {
-
-
+  AllLocations(newMarkerOnMap)
+  AllLocations(addToList)
+})
+function AllLocations(callbackfunction)
+{
   client.search({
     index: 'logstash-*',
     type: 'warehouse',
@@ -15,7 +18,7 @@ $(function () {
   }, function run(error, response) {
 
     response.hits.hits.forEach(function (hit) {
-     newMarkerOnMap(hit)
+     callbackfunction(hit)
     })
   })
-})
+}

@@ -8,10 +8,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Make the application on mobile take up the full browser screen and disable user scaling. -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
-    
+
     <script src="node_modules/cesium/Build/Cesium/Cesium.js"></script>
     <script src="bower_components/elasticsearch/elasticsearch.js"></script>
     <script src="bower_components/jquery/dist/jquery.js"></script>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="style/sidebar.css" />
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <title>Cesium RiskMap</title>
 
 
@@ -22,8 +25,7 @@
         html,
         body,
         #cesiumContainer {
-            width: 99%;
-            height: 99%;
+            
             margin: 0;
             padding: 0;
             overflow: hidden;
@@ -32,13 +34,82 @@
 </head>
 
 <body>
+    <div id="container">
 
-    <div id="cesiumContainer"></div>
+        <div class="row">
+            
+            <div class="col-xs-6 col-sm-3 col-md-3">
+                <div class="nav-side-menu">
+                    <div class="brand">Cesium</div>
+                    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+
+                    <div class="menu-list">
+
+                        <ul id="menu-content" class="menu-content collapse out">
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-dashboard fa-lg"></i> Dashboard
+                                </a>
+                            </li>
+
+                            <li data-toggle="collapse" data-target="#products" class="collapsed active">
+                                <a href="#"><i class="fa fa-gift fa-lg"></i> UI Elements <span class="arrow"></span></a>
+                            </li>
+                            <ul class="sub-menu collapse" id="products">
+                                <li class="active"><a href="#">CSS3 Animation</a></li>
+                                <li><a href="#">General</a></li>
+                                <li><a href="#">Buttons</a></li>
+                                <li><a href="#">Tabs & Accordions</a></li>
+                                <li><a href="#">Typography</a></li>
+                                <li><a href="#">FontAwesome</a></li>
+                                <li><a href="#">Slider</a></li>
+                                <li><a href="#">Panels</a></li>
+                                <li><a href="#">Widgets</a></li>
+                                <li><a href="#">Bootstrap Model</a></li>
+                            </ul>
 
 
-    
+                            <li data-toggle="collapse" data-target="#locationlist" class="collapsed">
+                                <a href="#" onclick = 'return false;'><i class="fa fa-globe fa-lg"></i> Locations <span class="arrow"></span></a>
+                            </li>
+                            <ul class="sub-menu collapse" id="locationlist">
+                                
+                            </ul>
+
+
+                            <li data-toggle="collapse" data-target="#new" class="collapsed">
+                                <a href="#"><i class="fa fa-car fa-lg"></i> New <span class="arrow"></span></a>
+                            </li>
+                            <ul class="sub-menu collapse" id="new">
+                                <li>New New 1</li>
+                                <li>New New 2</li>
+                                <li>New New 3</li>
+                            </ul>
+
+
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-user fa-lg"></i> Profile
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-users fa-lg"></i> Users
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-9 col-md-9">
+                <div id="cesiumContainer"></div>
+            </div>
+        </div>
+    </div>
     <script src="index.js"></script>
     <script src="script/PinBuilder.js"></script>
+    <script src="script/LocationList.js"></script>
     <script src="data/location.js"></script>
 
 </body>
