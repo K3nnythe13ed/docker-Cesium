@@ -1,7 +1,7 @@
 function addToList(hit) {
     var locationlist = document.getElementById("locationlist");
     var li = document.createElement("LI");
-    
+    li.style.width ="350px"
     
 
 
@@ -21,19 +21,25 @@ function addToList(hit) {
     };
     li.appendChild(a);
 
-    var btn = document.createElement("BUTTON");        // Create a <button> element
-    var t = document.createTextNode("Delete");       // Create a text node
-    btn.appendChild(t);
-    btn.style.textAlign = "right";
-    btn.onclick = function () {
-        deleteLocation(hit._source.properties.LocID)
-    }                  // Append the text to <button>
-    li.appendChild(btn);
     
     var att = document.createAttribute("id");
     att.value = "li " + hit._source.properties.LocID;
-    li.lastChild.style.alignContent ="right"
     li.setAttributeNode(att);
+
+    var btn = document.createElement("BUTTON");        // Create a <button> element
+    var t = document.createTextNode("Delete");       // Create a text node
+    btn.appendChild(t);
+    
+    btn.onclick = function () {
+        deleteLocation(hit._source.properties.LocID)
+    }                  // Append the text to <button>
+    
+    
+    li.appendChild(btn);
+    
+    li.lastChild.style.position = "absolute";
+    li.lastChild.style.left ="300px";
+    console.log(li)
     locationlist.appendChild(li)
 }
 
