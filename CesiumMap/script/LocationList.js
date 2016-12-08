@@ -7,12 +7,11 @@ function addToList(hit) {
     a.title = "my title text";
     a.href = "#";
     a.onclick = function () {
-       /* viewer.flyTo(Pin.).then(function (result) {
+        viewer.flyTo(viewer.entities.getById(hit._source.properties.LocID)).then(function (result) {
             if (result) {
                 viewer.selectedEntity = wyoming;
             }
-        });*/
-        viewer.zoomTo(viewer.entities.getById(hit._source.properties.LocID));
+        });
         return false;
     };
     li.appendChild(a);
