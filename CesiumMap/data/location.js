@@ -1,7 +1,3 @@
-$(function () {
-  AllLocations(newMarkerOnMap)
-  AllLocations(addToList)
-})
 function AllLocations(callbackfunction)
 {
   client.search({

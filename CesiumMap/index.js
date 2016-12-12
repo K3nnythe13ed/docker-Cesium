@@ -8,3 +8,15 @@ var terrainProvider = new Cesium.CesiumTerrainProvider({
   requestWaterMask: true
 });
 viewer.terrainProvider = terrainProvider;
+
+$(function () {
+  AllLocations(splitLocation)
+  AllVessels(pushASingleVesselFromEStoHash)
+  
+})
+
+function splitLocation(hit)
+{
+  newMarkerOnMap(hit)
+  addToList(hit);
+}
