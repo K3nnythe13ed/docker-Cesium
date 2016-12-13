@@ -1,6 +1,7 @@
 function SelectAreaLocation(c, addToList) {
     deleteDashboardWarehouseChild()
-
+    
+    
     client.search({
         index: 'logstash-constant',
         type: 'warehouse',
@@ -35,6 +36,7 @@ function SelectAreaLocation(c, addToList) {
             }
         }
     }, function getMoreUntilDone(error, response) {
+
         response.hits.hits.forEach(function (hit) {
             addToList(hit, 'warehouse', false)
         })

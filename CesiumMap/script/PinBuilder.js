@@ -36,7 +36,6 @@ function removePinMarker(id) {
 }
 
 function deleteLocation(id) {
-    console.log(id)
     client.delete({
         index: 'logstash-constant',
         type: 'warehouse',

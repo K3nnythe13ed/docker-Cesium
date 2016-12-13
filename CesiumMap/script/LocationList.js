@@ -9,7 +9,7 @@ function addToList(hit, element, del) {
 
     var linkText = document.createTextNode("" + hit._source.properties.AccountName);
     a.appendChild(linkText);
-    a.title = "my title text";
+    a.title = "Location: "+hit._source.properties.AccountName;
     a.href = "#";
     a.onclick = function () {
         viewer.flyTo(viewer.entities.getById(hit._source.properties.LocID),
@@ -43,7 +43,6 @@ function addToList(hit, element, del) {
 
         li.lastChild.style.position = "absolute";
         li.lastChild.style.left = "300px";
-        console.log(li)
     }
     locationlist.appendChild(li)
 
