@@ -1,8 +1,6 @@
 function SelectAreaLocation(c, addToList) {
-    var root = document.getElementById('warehouse');
-    while (root.firstChild) {
-        root.removeChild(root.firstChild);
-    }
+    deleteDashboardWarehouseChild()
+
     client.search({
         index: 'logstash-constant',
         type: 'warehouse',
@@ -38,9 +36,15 @@ function SelectAreaLocation(c, addToList) {
         }
     }, function getMoreUntilDone(error, response) {
         response.hits.hits.forEach(function (hit) {
-            console.log(response)
             addToList(hit, 'warehouse', false)
         })
     })
 
+}
+
+function deleteDashboardWarehouseChild() {
+    var root = document.getElementById('warehouse');
+    while (root.firstChild) {
+        root.removeChild(root.firstChild);
+    }
 }

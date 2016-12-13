@@ -13,11 +13,21 @@ function viewerEventListener() {
         var cartographic = ellipsoid.cartesianToCartographic(cartesian);
         var longitudeString = Cesium.Math.toDegrees(cartographic.longitude).toFixed(2);
         var latitudeString = Cesium.Math.toDegrees(cartographic.latitude).toFixed(2);
-        if (coordinates.length < 2) {
+             coordinates.push([parseFloat(longitudeString), parseFloat(latitudeString)]);
+    }, Cesium.ScreenSpaceEventType.LEFT_DOWN, Cesium.KeyboardEventModifier.ALT);
+
+ handler.setInputAction(function (movement) {
+      var mousePosition = new Cesium.Cartesian2(movement.position.x, movement.position.y);
+
+        var cartesian = viewer.camera.pickEllipsoid(mousePosition, ellipsoid);
+
+        var cartographic = ellipsoid.cartesianToCartographic(cartesian);
+        var longitudeString = Cesium.Math.toDegrees(cartographic.longitude).toFixed(2);
+        var latitudeString = Cesium.Math.toDegrees(cartographic.latitude).toFixed(2);
+        
             coordinates.push([parseFloat(longitudeString), parseFloat(latitudeString)]);
 
-        }
-        if (coordinates.length == 2) {
+
             var coords = []
             if (coordinates[0][0] < coordinates[1][0]) {
                 westLon = coordinates[0][0]
@@ -39,14 +49,16 @@ function viewerEventListener() {
             coords.push([eastLon, southLat])
             SelectAreaLocation(coords, addToList)
             drawRectangle(coords)
-        }
+        
 
 
-    }, Cesium.ScreenSpaceEventType.LEFT_CLICK, Cesium.KeyboardEventModifier.ALT);
+    }, Cesium.ScreenSpaceEventType.LEFT_UP, Cesium.KeyboardEventModifier.ALT);
 }
 function viewerEventRemoveListener() {
+    deleteDashboardWarehouseChild()
     viewer.entities.removeById('rectangleAreaSelect')
-    handler.removeInputAction(Cesium.ScreenSpaceEventType.LEFT_CLICK, Cesium.KeyboardEventModifier.ALT)
+    handler.removeInputAction(Cesium.ScreenSpaceEventType.LEFT_UP, Cesium.KeyboardEventModifier.ALT)
+    handler.removeInputAction(Cesium.ScreenSpaceEventType.LEFT_DOWN, Cesium.KeyboardEventModifier.ALT)
 
 }
 function drawRectangle(c) {
