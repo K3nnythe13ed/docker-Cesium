@@ -5,7 +5,7 @@ function newMarkerOnMap(hit) {
         return viewer.entities.add({
             id: hit._source.properties.LocID,
             name: hit._source.properties.AccountName,
-            position: Cesium.Cartesian3.fromDegrees(hit._source.geometry.coordinates[0], hit._source.geometry.coordinates[1]),
+            position: Cesium.Cartesian3.fromDegrees(hit._source.geometry.coordinates[0], hit._source.geometry.coordinates[1], 200.0),
             billboard: {
                 image: canvas.toDataURL(),
                 verticalOrigin: Cesium.VerticalOrigin.BOTTOM

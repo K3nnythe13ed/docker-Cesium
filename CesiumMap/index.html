@@ -90,12 +90,15 @@
                                 <li onclick=showModal()>New Location</li>
                             </ul>
 
-
-                            <li>
-                                <a href="#">
-                                    <i class="fa fa-user fa-lg"></i> Profile
-                                </a>
+                            <li data-toggle="collapse" data-target="#area" class="collapsed">
+                                <a href="#" onclick='return false;'><i class="fa fa-user fa-lg"></i> Area Select <span class="arrow"></span></a>
                             </li>
+                            <ul class="sub-menu collapse" id="area">
+                                <li onclick='viewerEventListener(); return false;'>New Select</li>
+                            
+                                <li onclick='viewerEventRemoveListener(); return false;'>Cancel</li>
+                            </ul>
+                                
 
                             <li>
                                 <a href="#">
@@ -188,6 +191,7 @@
     <script src="script/PinBuilder.js"></script>
     <script src="script/Modal.js"></script>
     <script src="script/LocationList.js"></script>
+    <script src="script/ClickHandler.js"></script>
     <script src="data/location.js"></script>
     <script src="data/vessel.js"></script>
     

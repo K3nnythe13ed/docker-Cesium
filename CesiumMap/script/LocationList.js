@@ -1,8 +1,8 @@
 function addToList(hit) {
     var locationlist = document.getElementById("locationlist");
     var li = document.createElement("LI");
-    li.style.width ="350px"
-    
+    li.style.width = "350px"
+
 
 
     var a = document.createElement('a');
@@ -12,16 +12,20 @@ function addToList(hit) {
     a.title = "my title text";
     a.href = "#";
     a.onclick = function () {
-        viewer.flyTo(viewer.entities.getById(hit._source.properties.LocID)).then(function (result) {
-            if (result) {
-                viewer.selectedEntity = wyoming;
+        viewer.flyTo(viewer.entities.getById(hit._source.properties.LocID),
+            {
+                orientation: {
+                    heading: Cesium.Math.toRadians(175.0),
+                    pitch: Cesium.Math.toRadians(-35.0),
+                    roll: 0.0
+                }
             }
-        });
+        )
         return false;
     };
     li.appendChild(a);
 
-    
+
     var att = document.createAttribute("id");
     att.value = "li " + hit._source.properties.LocID;
     li.setAttributeNode(att);
@@ -29,17 +33,16 @@ function addToList(hit) {
     var btn = document.createElement("BUTTON");        // Create a <button> element
     var t = document.createTextNode("Delete");       // Create a text node
     btn.appendChild(t);
-    
+
     btn.onclick = function () {
         deleteLocation(hit._source.properties.LocID)
     }                  // Append the text to <button>
-    
-    
+
+
     li.appendChild(btn);
-    
+
     li.lastChild.style.position = "absolute";
-    li.lastChild.style.left ="300px";
-    console.log(li)
+    li.lastChild.style.left = "300px";
     locationlist.appendChild(li)
 }
 

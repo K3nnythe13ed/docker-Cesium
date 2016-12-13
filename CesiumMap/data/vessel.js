@@ -1,9 +1,7 @@
 function loadVesselFromUrl() {
-    
+
     viewer.dataSources.add(Cesium.GeoJsonDataSource.load(shipCollection, {
-        stroke: Cesium.Color.HOTPINK,
-        fill: Cesium.Color.YELLOW,
-        strokeWidth: 3,
+
         markerSymbol: '?'
     })
     );
@@ -84,7 +82,9 @@ function pushASingleVesselFromEStoHash(hit) {
             "properties":
             {
                 "id": hit._source.MMSI,
-                "time": []
+                "time": [],
+                "COG":[],
+                "SOG": []
             }
 
         }
@@ -96,6 +96,8 @@ function pushASingleVesselFromEStoHash(hit) {
     shipCollection.features[update].geometry.coordinates.push([hit._source.LOCATION.lon,
     hit._source.LOCATION.lat])
     shipCollection.features[update].properties.time.push(hit._source["@timestamp"])
+    shipCollection.features[update].properties.COG.push(hit._source.COG)
+    shipCollection.features[update].properties.SOG.push(hit._source.SOG)
 
 }
 
