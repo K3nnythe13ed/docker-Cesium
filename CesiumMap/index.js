@@ -21,5 +21,5 @@ $(function () {
 function splitLocation(hit)
 {
   newMarkerOnMap(hit)
-  addToList(hit);
+  addToList(hit, "locationlist", true);
 }
