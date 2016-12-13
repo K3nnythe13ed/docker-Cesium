@@ -37,7 +37,7 @@ function viewerEventListener() {
             }
             coords.push([westLon, northLat])
             coords.push([eastLon, southLat])
-            SelectAreaLocation(coords)
+            SelectAreaLocation(coords, addToList)
             drawRectangle(coords)
         }
 
@@ -45,6 +45,7 @@ function viewerEventListener() {
     }, Cesium.ScreenSpaceEventType.LEFT_CLICK, Cesium.KeyboardEventModifier.ALT);
 }
 function viewerEventRemoveListener() {
+    viewer.entities.removeById('rectangleAreaSelect')
     handler.removeInputAction(Cesium.ScreenSpaceEventType.LEFT_CLICK, Cesium.KeyboardEventModifier.ALT)
 
 }
@@ -56,7 +57,7 @@ function drawRectangle(c) {
         name: 'Selected Area',
         rectangle: {
             coordinates: Cesium.Rectangle.fromDegrees(c[0][0], c[1][1], c[1][0], c[0][1]),
-            material: Cesium.Color.GREEN.withAlpha(0.5),
+            material: Cesium.Color.PURPLE.withAlpha(0.5),
             outline: true,
             height: 500,
             outlineColor: Cesium.Color.GREEN
@@ -66,16 +67,16 @@ function drawRectangle(c) {
                         Selected Area:\
                         </p>\
                         <p>\
-                        West Longitude '+ c[0][0]+' \
+                        Westernmost longitude '+ c[0][0]+' \
                         </p>\
                         <p>\
-                        South Latitude '+c[1][1]+'\
+                        Southernmost latitude '+c[1][1]+'\
                         </p>\
                         <p>\
-                        East Longitude '+c[1][0]+'\
+                        Easternmost longitude '+c[1][0]+'\
                         </p>\
                         <p>\
-                        North Latitude '+c[0][1]+'\
+                        Northernmost latitude '+c[0][1]+'\
                         </p>'
     });
     coordinates = [];

@@ -43,8 +43,10 @@ function addToList(hit, element, del) {
 
         li.lastChild.style.position = "absolute";
         li.lastChild.style.left = "300px";
-        locationlist.appendChild(li)
+        console.log(li)
     }
+    locationlist.appendChild(li)
+
 }
 
 function removeFromList(id) {
