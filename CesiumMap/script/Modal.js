@@ -1,4 +1,26 @@
-function showModal() { $('#myModal').modal("show") }
+function showModal() {
+
+    var screenSpaceEventHandler = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas);
+    screenSpaceEventHandler.setInputAction(function parseLatLon(position) {
+        var mousePosition = new Cesium.Cartesian2(position.position.x, position.position.y);
+
+        var cartesian = viewer.camera.pickEllipsoid(mousePosition, viewer.scene.globe.ellipsoid);
+
+        var cartographic = viewer.scene.globe.ellipsoid.cartesianToCartographic(cartesian);
+        var longitudeString = Cesium.Math.toDegrees(cartographic.longitude).toFixed(2);
+        var latitudeString = Cesium.Math.toDegrees(cartographic.latitude).toFixed(2);
+        var $modal = $('#myModal')
+        $loclat = $modal.find('#loclat');
+        $loclon = $modal.find('#loclon');
+
+        $loclat.val(parseFloat(latitudeString));
+        $loclon.val(parseFloat(longitudeString));
+
+
+        $('#myModal').modal("show")
+         screenSpaceEventHandler.removeInputAction(Cesium.ScreenSpaceEventType.LEFT_CLICK, Cesium.KeyboardEventModifier.ALT)
+    }, Cesium.ScreenSpaceEventType.LEFT_CLICK, Cesium.KeyboardEventModifier.ALT);
+}
 
 $('#locationform').formValidation({
     framework: 'bootstrap',
@@ -121,6 +143,7 @@ $(function () {
             //call functon to create a new Location
             createANewLocation(locname, locid, locexp, locrisk, loclat.toPrecision(12), loclon.toPrecision(12), locoe)
             $('#myModal').modal('hide');
+           
 
         }
     });
