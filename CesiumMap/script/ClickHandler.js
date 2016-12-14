@@ -30,7 +30,7 @@ var camera = viewer.camera;
 var coords = []
 
 function viewerEventListener() {
-    deleteDashboardWarehouseChild()
+    viewerEventRemoveListener()
 
 
     //Draw the selector while the user drags the mouse while holding ALT
@@ -83,9 +83,9 @@ function viewerEventListener() {
     }, Cesium.ScreenSpaceEventType.LEFT_UP, Cesium.KeyboardEventModifier.ALT);
 
     //Hide the selector by clicking anywhere
-    screenSpaceEventHandler.setInputAction(function hideSelector() {
-        selector.show = false;
-    }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
+    //  screenSpaceEventHandler.setInputAction(function hideSelector() {
+    //      selector.show = false;
+    //  }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
 
 
     var getSelectorLocation = new Cesium.CallbackProperty(function getSelectorLocation(time, result) {
@@ -95,12 +95,14 @@ function viewerEventListener() {
 
     selector = viewer.entities.add({
         id: 'rectangleAreaSelect',
+        name: 'Selected Area',
         selectable: false,
         show: false,
         rectangle: {
             coordinates: getSelectorLocation,
             material: Cesium.Color.PURPLE.withAlpha(0.5)
-        }
+        },
+         description: 'Area Selected'
     });
 
 
