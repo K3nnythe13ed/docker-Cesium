@@ -52,11 +52,11 @@
                     <div class="menu-list">
 
                         <ul id="menu-content" class="menu-content collapse out">
-                            <li data-toggle="collapse" data-target="#dashboard" class="collapsed">
-                                <a href="#" onclick='return false;'><i class="fa fa-dashboard fa-lg"></i> Dashboard <span class="arrow"></span></a>
+                            <li data-toggle="collapse" data-target="#dashboard" class="collapsed" id="dash" onclick='checkCollapsed()'>
+                                <a href="#" onclick='return false; '><i class="fa fa-dashboard fa-lg"></i> Dashboard <span class="arrow"></span></a>
                             </li>
                             <ul class="sub-menu collapse" id="dashboard">
-                                 <li data-toggle="collapse" data-target="#warehouse" class="collapsed">
+                                 <li data-toggle="collapse" data-target="#warehouse" class="collapsed" id="ware" onclick='checkCollapsedWarehouse()'>
                                 <a href="#" onclick='return false;'><i class="fa fa-map-marker"></i> Warehouse <span class="arrow"></span></a>
                                 <ul class="sub-menu collapse" id="warehouse">
 

@@ -1,5 +1,22 @@
+var collapsed = false
+var collapsedware = false
+function checkCollapsed() {
+    if (collapsed) {
+        collapsed = false
+    }
+    else {
+        collapsed = true
+    }
+}
 
-
+function checkCollapsedWarehouse() {
+    if (collapsedware) {
+        collapsedware = false
+    }
+    else {
+        collapsedware = true
+    }
+}
 var selector;
 var rectangleSelector = new Cesium.Rectangle();
 var screenSpaceEventHandler = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas);
@@ -11,9 +28,10 @@ var firstPointSet = false;
 var mouseDown = false;
 var camera = viewer.camera;
 var coords = []
+
 function viewerEventListener() {
-   deleteDashboardWarehouseChild()
-   
+    deleteDashboardWarehouseChild()
+
 
     //Draw the selector while the user drags the mouse while holding ALT
     screenSpaceEventHandler.setInputAction(function drawSelector(movement) {
@@ -37,7 +55,7 @@ function viewerEventListener() {
                 rectangleSelector.north = Math.max(tempCartographic.latitude, firstPoint.latitude);
                 rectangleSelector.south = Math.min(tempCartographic.latitude, firstPoint.latitude);
                 selector.show = true;
-                
+
             }
         }
     }, Cesium.ScreenSpaceEventType.MOUSE_MOVE, Cesium.KeyboardEventModifier.ALT);
@@ -56,9 +74,12 @@ function viewerEventListener() {
         var longitudeString = Cesium.Math.toDegrees(rectangleSelector.west).toFixed(2);
         var latitudeString = Cesium.Math.toDegrees(rectangleSelector.south).toFixed(2);
 
-        coords.push([parseFloat(longitudeString), parseFloat(latitudeString)],[parseFloat(longitudeString2), parseFloat(latitudeString2)])
+        coords.push([parseFloat(longitudeString), parseFloat(latitudeString)], [parseFloat(longitudeString2), parseFloat(latitudeString2)])
         console.log(coords)
         SelectAreaLocation(coords, addToList)
+        collapse()
+
+
     }, Cesium.ScreenSpaceEventType.LEFT_UP, Cesium.KeyboardEventModifier.ALT);
 
     //Hide the selector by clicking anywhere
@@ -73,7 +94,7 @@ function viewerEventListener() {
 
 
     selector = viewer.entities.add({
-        id:'rectangleAreaSelect',
+        id: 'rectangleAreaSelect',
         selectable: false,
         show: false,
         rectangle: {
@@ -81,8 +102,20 @@ function viewerEventListener() {
             material: Cesium.Color.PURPLE.withAlpha(0.5)
         }
     });
-}
 
+
+}
+function collapse() {
+    if (!collapsed) {
+        document.getElementById('dash').click();
+        collapsed = true;
+
+    }
+    if (!collapsedware) {
+        document.getElementById('ware').click();
+        collapsedware = true;
+    }
+}
 
 function viewerEventRemoveListener() {
     deleteDashboardWarehouseChild()
