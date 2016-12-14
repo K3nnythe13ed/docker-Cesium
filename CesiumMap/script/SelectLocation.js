@@ -46,28 +46,38 @@ function SelectAreaLocation(c, addToList) {
 }
 function InsertWarehouseValue(result) {
     var node = document.createTextNode('Location Exp_TIV: ' + formatThousand(result.aggregations[1].value));
-    
 
 
-    var li = document.createElement("LI");
-    var att = document.createAttribute("id");
-    att.value = "WarehouseValue"
+    if (document.getElementById('WarehouseValue')) {
+        var li = document.getElementById('WarehouseValue')
+        li.removeChild(li.firstChild);
+    }
+    else {
+        var li = document.createElement("LI");
+        var att = document.createAttribute("id");
+        att.value = "WarehouseValue"
 
-    li.setAttributeNode(att);
+        li.setAttributeNode(att);
+    }
     li.appendChild(node);
     var root = document.getElementById('dashboard');
 
     root.insertBefore(li, root.childNodes[0])
 
 }
+
+function deleteDashboardChild() {
+
+    var ro = document.getElementById('dashboard');
+
+    if (document.getElementById('WarehouseValue')) { ro.removeChild(document.getElementById('WarehouseValue')); }
+}
 function deleteDashboardWarehouseChild() {
     var root = document.getElementById('warehouse');
     while (root.firstChild) {
         root.removeChild(root.firstChild);
     }
-    var ro = document.getElementById('dashboard');
 
-    if (document.getElementById('WarehouseValue')) { root.removeChild(document.getElementById('WarehouseValue')); }
 }
 
 function formatThousand(nStr) {

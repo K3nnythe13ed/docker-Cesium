@@ -120,6 +120,7 @@ function collapse() {
 }
 
 function viewerEventRemoveListener() {
+    deleteDashboardChild()
     deleteDashboardWarehouseChild()
     viewer.entities.removeById('rectangleAreaSelect')
     screenSpaceEventHandler.removeInputAction(Cesium.ScreenSpaceEventType.LEFT_UP, Cesium.KeyboardEventModifier.ALT)
