@@ -1,4 +1,7 @@
 function addToList(hit, element, del) {
+    console.log(hit)
+    console.log(element)
+    console.log(del)
     var locationlist = document.getElementById(element);
     var li = document.createElement("LI");
     li.style.width = "350px"
@@ -36,7 +39,7 @@ function addToList(hit, element, del) {
 
         btn.onclick = function () {
             deleteLocation(hit._source.properties.LocID)
-        }                  // Append the text to <button>
+        }                  
 
 
         li.appendChild(btn);

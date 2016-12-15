@@ -201,8 +201,7 @@ function createANewLocation(locname, locid, locexp, locrisk, loclat, loclon, loc
                 id: locid
             }, function (err, response) {
                 console.log(response)
-                newMarkerOnMap(response)
-                addToList(response)
+                splitLocation(response)
             })
 
         })
