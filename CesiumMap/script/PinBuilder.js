@@ -1,6 +1,6 @@
 var pinBuilder = new Cesium.PinBuilder();
 function newMarkerOnMap(hit) {
-    var url = Cesium.buildModuleUrl('/../../../../image/office-building.png');
+    var url = Cesium.buildModuleUrl('../../../../image/office-building.png');
     var Pin = Cesium.when(pinBuilder.fromUrl(url, Cesium.Color.BLUE, 100), function (canvas) {
         return viewer.entities.add({
             id: hit._source.properties.LocID,
