@@ -100,7 +100,8 @@ function viewerEventListener() {
         show: false,
         rectangle: {
             coordinates: getSelectorLocation,
-            material: Cesium.Color.PURPLE.withAlpha(0.5)
+            material: Cesium.Color.PURPLE.withAlpha(0.5),
+            height:50
         },
          description: 'Area Selected'
     });
