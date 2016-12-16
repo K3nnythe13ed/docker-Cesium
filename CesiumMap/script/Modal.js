@@ -88,6 +88,10 @@ $('#locationform').formValidation({
                 stringLength: {
                     max: 1,
                     message: 'Please enter a valid Nathan Risk Score'
+                },
+                digits: {
+                    message: 'The Location Risk Score does allow digits only',
+
                 }
             }
         },
@@ -190,7 +194,7 @@ function createANewLocation(locname, locid, locexp, locrisk, loclat, loclon, loc
 
 
     }, function (err, results) {
-        console.log(results)
+        
         //refresh index. Required based on the asynchronous input of es client
         client.indices.refresh({
             index: 'logstash-constant'
@@ -200,7 +204,6 @@ function createANewLocation(locname, locid, locexp, locrisk, loclat, loclon, loc
                 type: 'warehouse',
                 id: locid
             }, function (err, response) {
-                console.log(response)
                 splitLocation(response)
             })
 
