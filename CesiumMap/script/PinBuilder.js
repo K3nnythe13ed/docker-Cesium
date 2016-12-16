@@ -1,7 +1,10 @@
 var pinBuilder = new Cesium.PinBuilder();
 function newMarkerOnMap(hit) {
     var url = Cesium.buildModuleUrl('../../../../image/office-building.png');
-    var Pin = Cesium.when(pinBuilder.fromUrl(url, Cesium.Color.BLUE, 100), function (canvas) {
+    var markerHeight = hit._source.properties.Exp_TIV/200000
+    console.log(markerHeight)
+    markerHeight = Math.min(markerHeight, 100);
+    var Pin = Cesium.when(pinBuilder.fromUrl(url, Cesium.Color.BLUE, markerHeight), function (canvas) {
         return viewer.entities.add({
             id: hit._source.properties.LocID,
             name: hit._source.properties.AccountName,

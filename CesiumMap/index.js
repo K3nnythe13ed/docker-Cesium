@@ -1,7 +1,6 @@
 Cesium.BingMapsApi.defaultKey = bing;
 
-var viewer = new Cesium.Viewer('cesiumContainer',{
-})
+var viewer = new Cesium.Viewer('cesiumContainer')
 
 
 var terrainProvider = new Cesium.CesiumTerrainProvider({

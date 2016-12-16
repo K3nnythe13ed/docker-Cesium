@@ -1,7 +1,5 @@
 function addToList(hit, element, del) {
-    console.log(hit)
-    console.log(element)
-    console.log(del)
+
     var locationlist = document.getElementById(element);
     var li = document.createElement("LI");
     li.style.width = "350px"
