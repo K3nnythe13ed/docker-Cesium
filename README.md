@@ -8,7 +8,7 @@ Trying to clone the [awesome-inc/docker-elk-riskmap](https://github.com/K3nnythe
 
 Technically, this comprises the [Elastic Stack](https://www.elastic.co/products) and a [Cesium](https://cesiumjs.org/) web application to visualize [OpenWeatherMap](https://openweathermap.org/) and playback of online [AIS](https://en.wikipedia.org/wiki/Automatic_identification_system) data.
 
-![Screenshot](riskmap.jpg)
+![Screenshot](cesium.jpg)
 
 ## Setup
 
